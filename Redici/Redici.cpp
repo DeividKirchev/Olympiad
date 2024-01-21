@@ -1,33 +1,23 @@
 #include <iostream>
-
 using namespace std;
-
-int countSequences(int X, int N, int Y) {
-	if (N == 0) {
-		return 1;
+int countSequences(int x, int n, int y) {
+	if (n == 1) {
+		return min(y, x);
 	}
-
 	int count = 0;
-	for (int i = 0; i < X && i < Y; i++) {
-		count += countSequences(X, N - 1, Y - i);
+	for (int i = 0; i < x && i < y; i++) {
+		count += countSequences(x, n - 1, y - i);
 	}
-
 	return count;
 }
 
 int main() {
-	
-	for (int n = 1; n < 20; n++) {}
-		for (int y = 3;y < 30;y++)
-		{
-			for (int x = 2;x < y;x++)
-			{
-				int result = countSequences(x, y, n);
-				cout << result << " ";
-			}
-			cout << "|";
-		}
-		cout << endl;
+	int T;
+	cin >> T;
+	for (int t = 0; t < T; t++) {
+		int x, n, y;
+		cin >> x >> n >> y;
+		cout << countSequences(x, n, y) << endl;
 	}
 
 	return 0;
